@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Bienestar Emocional</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #2b2b2b;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        form:hover {
+            transform: translateY(-3px);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .options label {
+            padding: 10px;
+            background: #e7f1ff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .options input {
+            display: none; /* Ocultamos los radios */
+        }
+        /* Resaltar la opción seleccionada */
+        .options input:checked + label {
+            background: #4a90e2; /* Color de fondo cuando está seleccionado */
+            color: white; /* Color del texto cuando está seleccionado */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #357ab8;
+            transform: translateY(-2px);
+        }
+        #resultados {
+            display: none;
+            margin-top: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        #diagnostico {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2b2b2b;
+        }
+        #puntos {
+            font-size: 1em;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cuestionario de Bienestar Emocional</h2>
+    <form id="bienestar-form" action="https://formspree.io/f/xkgnwkel" method="POST">
+        <!-- Nombre -->
+        <div class="question">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <!-- Edad -->
+        <div class="question">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+        </div>
+
+        <!-- Sexo -->
+        <div class="question">
+            <label>Sexo:</label>
+            <div class="options">
+                <input type="radio" id="masculino" name="sexo" value="masculino" required>
+                <label for="masculino">Masculino</label>
+                <input type="radio" id="femenino" name="sexo" value="femenino">
+                <label for="femenino">Femenino</label>
+                <input type="radio" id="prefiero-no-decirlo" name="sexo" value="prefiero-no-decirlo">
+                <label for="prefiero-no-decirlo">Prefiero no decirlo</label>
+            </div>
+        </div>
+
+        <!-- Preguntas -->
+        <div class="question">
+            <label>1. En una escala del 1 a 5, ¿cómo te sentiste durante la última semana?</label>
+            <div class="options">
+                <input type="radio" id="sentimiento-semana-5" name="sentimiento-semana" value="5" required>
+                <label for="sentimiento-semana-5">5. 😢 Muy mal</label>
+                <input type="radio" id="sentimiento-semana-4" name="sentimiento-semana" value="4">
+                <label for="sentimiento-semana-4">4. 😟 Mal</label>
+                <input type="radio" id="sentimiento-semana-3" name="sentimiento-semana" value="3">
+                <label for="sentimiento-semana-3">3. 😐 Regular</label>
+                <input type="radio" id="sentimiento-semana-2" name="sentimiento-semana" value="2">
+                <label for="sentimiento-semana-2">2. 🙂 Bien</label>
+                <input type="radio" id="sentimiento-semana-1" name="sentimiento-semana" value="1">
+                <label for="sentimiento-semana-1">1. 😀 Muy bien</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>2. En una escala del 1 a 5, ¿cómo te sientes en estos momentos?</label>
+            <div class="options">
+                <input type="radio" id="sentimiento-actual-5" name="sentimiento-actual" value="5" required>
+                <label for="sentimiento-actual-5">5. 😢 Muy mal</label>
+                <input type="radio" id="sentimiento-actual-4" name="sentimiento-actual" value="4">
+                <label for="sentimiento-actual-4">4. 😟 Mal</label>
+                <input type="radio" id="sentimiento-actual-3" name="sentimiento-actual" value="3">
+                <label for="sentimiento-actual-3">3. 😐 Regular</label>
+                <input type="radio" id="sentimiento-actual-2" name="sentimiento-actual" value="2">
+                <label for="sentimiento-actual-2">2. 🙂 Bien</label>
+                <input type="radio" id="sentimiento-actual-1" name="sentimiento-actual" value="1">
+                <label for="sentimiento-actual-1">1. 😀 Muy bien</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>3. En una escala del 1 a 5, ¿con qué frecuencia experimentas sentimientos de tristeza?</label>
+            <div class="options">
+                <input type="radio" id="tristeza-frecuencia-1" name="tristeza-frecuencia" value="1" required>
+                <label for="tristeza-frecuencia-1">1. Nunca 😊</label>
+                <input type="radio" id="tristeza-frecuencia-2" name="tristeza-frecuencia" value="2">
+                <label for="tristeza-frecuencia-2">2. Pocas veces 🙂</label>
+                <input type="radio" id="tristeza-frecuencia-3" name="tristeza-frecuencia" value="3">
+                <label for="tristeza-frecuencia-3">3. Algunas veces 😐</label>
+                <input type="radio" id="tristeza-frecuencia-4" name="tristeza-frecuencia" value="4">
+                <label for="tristeza-frecuencia-4">4. Casi siempre 😟</label>
+                <input type="radio" id="tristeza-frecuencia-5" name="tristeza-frecuencia" value="5">
+                <label for="tristeza-frecuencia-5">5. Siempre 😢</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>4. En una escala del 1 a 5, ¿con qué frecuencia has sentido estrés durante este semestre académico?</label>
+            <div class="options">
+                <input type="radio" id="estres-semestre-1" name="estres-semestre" value="1" required>
+                <label for="estres-semestre-1">1. Nunca 😊</label>
+                <input type="radio" id="estres-semestre-2" name="estres-semestre" value="2">
+                <label for="estres-semestre-2">2. Pocas veces 🙂</label>
+                <input type="radio" id="estres-semestre-3" name="estres-semestre" value="3">
+                <label for="estres-semestre-3">3. Algunas veces 😐</label>
+                <input type="radio" id="estres-semestre-4" name="estres-semestre" value="4">
+                <label for="estres-semestre-4">4. Casi siempre 😟</label>
+                <input type="radio" id="estres-semestre-5" name="estres-semestre" value="5">
+                <label for="estres-semestre-5">5. Siempre 😢</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>5. En una escala del 1 a 5, ¿qué tan satisfecho te sientes con tu vida?</label>
+            <div class="options">
+                <input type="radio" id="satisfaccion-vida-1" name="satisfaccion-vida" value="1" required>
+                <label for="satisfaccion-vida-1">1. Muy insatisfecho 😢</label>
+                <input type="radio" id="satisfaccion-vida-2" name="satisfaccion-vida" value="2">
+                <label for="satisfaccion-vida-2">2. Insatisfecho 😟</label>
+                <input type="radio" id="satisfaccion-vida-3" name="satisfaccion-vida" value="3">
+                <label for="satisfaccion-vida-3">3. Neutral 😐</label>
+                <input type="radio" id="satisfaccion-vida-4" name="satisfaccion-vida" value="4">
+                <label for="satisfaccion-vida-4">4. Satisfecho 🙂</label>
+                <input type="radio" id="satisfaccion-vida-5" name="satisfaccion-vida" value="5">
+                <label for="satisfaccion-vida-5">5. Muy satisfecho 😀</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>6. En una escala del 1 a 5, ¿cómo calificarías la calidad de tu sueño?</label>
+            <div class="options">
+                <input type="radio" id="calidad-sueno-1" name="calidad-sueno" value="1" required>
+                <label for="calidad-sueno-1">1. Muy mala 😢</label>
+                <input type="radio" id="calidad-sueno-2" name="calidad-sueno" value="2">
+                <label for="calidad-sueno-2">2. Mala 😟</label>
+                <input type="radio" id="calidad-sueno-3" name="calidad-sueno" value="3">
+                <label for="calidad-sueno-3">3. Regular 😐</label>
+                <input type="radio" id="calidad-sueno-4" name="calidad-sueno" value="4">
+                <label for="calidad-sueno-4">4. Buena 🙂</label>
+                <input type="radio" id="calidad-sueno-5" name="calidad-sueno" value="5">
+                <label for="calidad-sueno-5">5. Muy buena 😀</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>7. En una escala del 1 a 5, ¿qué tanto sientes soledad?</label>
+            <div class="options">
+                <input type="radio" id="sensacion-soledad-5" name="sensacion-soledad" value="5" required>
+                <label for="sensacion-soledad-5">5. Siempre 😢</label>
+                <input type="radio" id="sensacion-soledad-4" name="sensacion-soledad" value="4">
+                <label for="sensacion-soledad-4">4. Casi siempre 😟</label>
+                <input type="radio" id="sensacion-soledad-3" name="sensacion-soledad" value="3">
+                <label for="sensacion-soledad-3">3. Algunas veces 😐</label>
+                <input type="radio" id="sensacion-soledad-2" name="sensacion-soledad" value="2">
+                <label for="sensacion-soledad-2">2. Pocas veces 🙂</label>
+                <input type="radio" id="sensacion-soledad-1" name="sensacion-soledad" value="1">
+                <label for="sensacion-soledad-1">1. Nunca 😊</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>8. En una escala del 1 a 5, ¿qué tanto influye tu estado de ánimo en tus decisiones alimentarias?</label>
+            <div class="options">
+                <input type="radio" id="influencia-animo-5" name="influencia-animo" value="5" required>
+                <label for="influencia-animo-5">5. Muchísimo 😢</label>
+                <input type="radio" id="influencia-animo-4" name="influencia-animo" value="4">
+                <label for="influencia-animo-4">4. Mucho 😟</label>
+                <input type="radio" id="influencia-animo-3" name="influencia-animo" value="3">
+                <label for="influencia-animo-3">3. Neutral 😐</label>
+                <input type="radio" id="influencia-animo-2" name="influencia-animo" value="2">
+                <label for="influencia-animo-2">2. Poco 🙂</label>
+                <input type="radio" id="influencia-animo-1" name="influencia-animo" value="1">
+                <label for="influencia-animo-1">1. Muy poco 😊</label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar Cuestionario</button>
+    </form>
+
+    <div id="resultados">
+        <h3>Resultados</h3>
+        <p id="diagnostico"></p>
+        <p id="puntos"></p>
+    </div>
+
+    <script>
+        document.getElementById('bienestar-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let puntos = 0;
+            let resultados = "";
+
+            // Obtención de valores de las respuestas
+            const respuestas = {
+                sentimientoSemana: parseInt(document.querySelector('input[name="sentimiento-semana"]:checked').value),
+                sentimientoActual: parseInt(document.querySelector('input[name="sentimiento-actual"]:checked').value),
+                tristezaFrecuencia: parseInt(document.querySelector('input[name="tristeza-frecuencia"]:checked').value),
+                estresSemestre: parseInt(document.querySelector('input[name="estres-semestre"]:checked').value),
+                satisfaccionVida: parseInt(document.querySelector('input[name="satisfaccion-vida"]:checked').value),
+                calidadSueno: parseInt(document.querySelector('input[name="calidad-sueno"]:checked').value),
+                sensacionSoledad: parseInt(document.querySelector('input[name="sensacion-soledad"]:checked').value),
+                influenciaAnimo: parseInt(document.querySelector('input[name="influencia-animo"]:checked').value),
+            };
+
+            // Sumar puntos
+            puntos += 6 - respuestas.sentimientoSemana; // Inverso
+            puntos += 6 - respuestas.sentimientoActual; // Inverso
+            puntos += 6 - respuestas.tristezaFrecuencia; // Inverso
+            puntos += 6 - respuestas.estresSemestre; // Inverso
+            puntos += respuestas.satisfaccionVida; // Directo
+            puntos += 6 - respuestas.calidadSueno; // Inverso
+            puntos += 6 - respuestas.sensacionSoledad; // Inverso
+            puntos += 6 - respuestas.influenciaAnimo; // Inverso
+
+            // Diagnóstico
+            if (puntos < 8) {
+                resultados = "Tu bienestar emocional es muy bueno. ¡Sigue así!";
+            } else if (puntos < 16) {
+                resultados = "Tu bienestar emocional es bueno, pero podría mejorar.";
+            } else {
+                resultados = "Es posible que necesites atención a tu bienestar emocional. Considera hablar con alguien.";
+            }
+
+            // Mostrar resultados
+            document.getElementById('diagnostico').textContent = resultados;
+            document.getElementById('puntos').textContent = "Puntos totales: " + puntos;
+            document.getElementById('resultados').style.display = 'block';
+
+            // Enviar el formulario
+            this.submit();
+        });
+    </script>
+</body>
+</html>
