@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            position: relative;
+            overflow: auto;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://media.istockphoto.com/id/1399506402/es/vector/concepto-de-psicoterapia-y-mentalidad-salud.jpg?s=612x612&w=0&k=20&c=BR7pbU2aFf7mloyIAxj74KwxhhJjZFiAkL9ByhKtvmo=');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
+        header {
+            background: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        header img {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            height: 85px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            padding: 10px 20px;
+            background: #ffffff;
+            color: #343a40;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            background: #343a40;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0 0 20px;
+            color: #343a40;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f8f9fa;
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .options input {
+            display: none;
+        }
+        .options label:hover {
+            background: #e2e6ea;
+        }
+        .options input:checked + label {
+            background: #007bff;
+            color: #ffffff;
+            transform: scale(1.02);
+        }
+        button {
+            background: #343a40;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #495057;
+            transform: translateY(-2px);
+        }
+        #situacion-problema {
+            display: none;
+        }
+        
+        .divider {
+      height: 4px; /* Altura de la barra */
+    background: linear-gradient(90deg, #007BFF, #00CFFF); /* Gradiente de color */
+    border-radius: 10px; /* Bordes más redondeados */
+    margin: 10px 0; /* Espaciado arriba y abajo */
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5); /* Sombra para dar profundidad */
+       }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BIENESTAR MENTAL UCC</h1>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFg7PbjTqP_C61FxVT4EhHby3zSXPjIhh7uw&s" alt="">
+    </header>
+
+    <nav>
+        <a href="#" id="formulario-link">Formulario</a>
+        <a href="#" id="situacion-link">Situación Problema</a>
+    </nav>
+
+    <div class="content" id="content">
+        <h2>Bienvenido</h2>
+        <p>Selecciona una opción del menú para continuar.</p>
+
+        <!-- Formulario de Bienestar Emocional -->
+        <div id="formulario" style="display: none;">
+            <form id="bienestar-form" action="https://formspree.io/f/myzyyzva" method="POST" novalidate>
+                <!-- Sección de Datos Personales -->
+                <fieldset>
+                    <legend>Datos Personales</legend>
+                    <div class="question">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre_completo" required>
+                    </div>
+                    <div class="question">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" name="edad_personal" required>
+                    </div>
+                    <div class="question">
+                        <label>Sexo:</label>
+                        <div class="options">
+                            <input type="radio" id="masculino" name="sexo_personal" value="masculino" required>
+                            <label for="masculino">Masculino</label>
+                            <input type="radio" id="femenino" name="sexo_personal" value="femenino" required>
+                            <label for="femenino">Femenino</label>
+                            <input type="radio" id="prefiero-no-decirlo" name="sexo_personal" value="prefiero-no-decirlo" required>
+                            <label for="prefiero-no-decirlo">Prefiero no decirlo</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Sección de Preguntas -->
+                <fieldset>
+                    <legend>Cuestionario</legend>
+                    <div class="question">
+                        <label>1. En una escala del 1 a 5, ¿cómo te sentiste durante la última semana?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo te sentiste durante la última semana?-1" name="¿cómo te sentiste durante la última semana?" value="1 - Muy mal" required>
+                            <label for="¿cómo te sentiste durante la última semana?-1">1. Muy mal</label>
+                            <input type="radio" id="¿cómo te sentiste durante la última semana?-2" name="¿cómo te sentiste durante la última semana?" value="2 - Mal">
+                            <label for="¿cómo te sentiste durante la última semana?-2">2. Mal</label>
+                            <input type="radio" id="¿cómo te sentiste durante la última semana?-3" name="¿cómo te sentiste durante la última semana?" value="3 - Regular">
+                            <label for="¿cómo te sentiste durante la última semana?-3">3. Regular</label>
+                            <input type="radio" id="¿cómo te sentiste durante la última semana?-4" name="¿cómo te sentiste durante la última semana?" value="4 - Bien">
+                            <label for="¿cómo te sentiste durante la última semana?-4">4. Bien</label>
+                            <input type="radio" id="¿cómo te sentiste durante la última semana?-5" name="¿cómo te sentiste durante la última semana?" value="5 - Muy bien">
+                            <label for="¿cómo te sentiste durante la última semana?-5">5. Muy bien</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>2. En una escala de 1 a 5, ¿cómo te sientes en estos momentos?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo te sientes en estos momentos?-1" name="¿cómo te sientes en estos momentos?" value="1 - Muy mal" required>
+                            <label for="¿cómo te sientes en estos momentos?-1">1. Muy mal</label>
+                            <input type="radio" id="¿cómo te sientes en estos momentos?-2" name="¿cómo te sientes en estos momentos?" value="2 - Mal">
+                            <label for="¿cómo te sientes en estos momentos?-2">2. Mal</label>
+                            <input type="radio" id="¿cómo te sientes en estos momentos?-3" name="¿cómo te sientes en estos momentos?" value="3 - Regular">
+                            <label for="¿cómo te sientes en estos momentos?-3">3. Regular</label>
+                            <input type="radio" id="¿cómo te sientes en estos momentos?-4" name="¿cómo te sientes en estos momentos?" value="4 - Bien">
+                            <label for="¿cómo te sientes en estos momentos?-4">4. Bien</label>
+                            <input type="radio" id="¿cómo te sientes en estos momentos?-5" name="¿cómo te sientes en estos momentos?" value="5 - Muy bien">
+                            <label for="¿cómo te sientes en estos momentos?-5">5. Muy bien</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>3. En una escala de 1 a 5, ¿con qué frecuencia experimentas sentimientos de tristeza?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿con qué frecuencia experimentas sentimientos de tristeza?-1" name="¿con qué frecuencia experimentas sentimientos de tristeza?" value="1 - Nunca" required>
+                            <label for="¿con qué frecuencia experimentas sentimientos de tristeza?-1">1. Nunca</label>
+                            <input type="radio" id="¿con qué frecuencia experimentas sentimientos de tristeza?-2" name="¿con qué frecuencia experimentas sentimientos de tristeza?" value="2 - Pocas veces">
+                            <label for="¿con qué frecuencia experimentas sentimientos de tristeza?-2">2. Pocas veces</label>
+                            <input type="radio" id="¿con qué frecuencia experimentas sentimientos de tristeza?-3" name="¿con qué frecuencia experimentas sentimientos de tristeza?" value="3 - A veces">
+                            <label for="¿con qué frecuencia experimentas sentimientos de tristeza?-3">3. A veces</label>
+                            <input type="radio" id="¿con qué frecuencia experimentas sentimientos de tristeza?-4" name="¿con qué frecuencia experimentas sentimientos de tristeza?" value="4 - Frecuentemente">
+                            <label for="¿con qué frecuencia experimentas sentimientos de tristeza?-4">4. Frecuentemente</label>
+                            <input type="radio" id="¿con qué frecuencia experimentas sentimientos de tristeza?-5" name="¿con qué frecuencia experimentas sentimientos de tristeza?" value="5 - Siempre">
+                            <label for="¿con qué frecuencia experimentas sentimientos de tristeza?-5">5. Siempre</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>4. En una escala de 1 a 5, ¿cómo calificarías tu nivel de estrés actual?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo calificarías tu nivel de estrés actual?-1" name="¿cómo calificarías tu nivel de estrés actual?" value="1 - Muy bajo" required>
+                            <label for="¿cómo calificarías tu nivel de estrés actual?-1">1. Muy bajo</label>
+                            <input type="radio" id="¿cómo calificarías tu nivel de estrés actual?-2" name="¿cómo calificarías tu nivel de estrés actual?" value="2 - Bajo">
+                            <label for="¿cómo calificarías tu nivel de estrés actual?-2">2. Bajo</label>
+                            <input type="radio" id="¿cómo calificarías tu nivel de estrés actual?-3" name="¿cómo calificarías tu nivel de estrés actual?" value="3 - Medio">
+                            <label for="¿cómo calificarías tu nivel de estrés actual?-3">3. Medio</label>
+                            <input type="radio" id="¿cómo calificarías tu nivel de estrés actual?-4" name="¿cómo calificarías tu nivel de estrés actual?" value="4 - Alto">
+                            <label for="¿cómo calificarías tu nivel de estrés actual?-4">4. Alto</label>
+                            <input type="radio" id="¿cómo calificarías tu nivel de estrés actual?-5" name="¿cómo calificarías tu nivel de estrés actual?" value="5 - Muy alto">
+                            <label for="¿cómo calificarías tu nivel de estrés actual?-5">5. Muy alto</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>5. En una escala de 1 a 5, ¿qué tan satisfecho consideras que estás con tu vida?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿Qué tan satisfecho consideras que estás con tu vida?-1" name="¿Qué tan satisfecho consideras que estás con tu vida?" value="1 - Muy insatisfecho" required>
+                            <label for="¿Qué tan satisfecho consideras que estás con tu vida?-1">1. Muy insatisfecho</label>
+                            <input type="radio" id="¿Qué tan satisfecho consideras que estás con tu vida?-2" name="¿Qué tan satisfecho consideras que estás con tu vida?" value="2 - Insatisfecho">
+                            <label for="¿Qué tan satisfecho consideras que estás con tu vida?-2">2. Insatisfecho</label>
+                            <input type="radio" id="¿Qué tan satisfecho consideras que estás con tu vida?-3" name="¿Qué tan satisfecho consideras que estás con tu vida?" value="3 - Regular">
+                            <label for="¿Qué tan satisfecho consideras que estás con tu vida?-3">3. Regular</label>
+                            <input type="radio" id="¿Qué tan satisfecho consideras que estás con tu vida?-4" name="¿Qué tan satisfecho consideras que estás con tu vida?" value="4 - Satisfecho">
+                            <label for="¿Qué tan satisfecho consideras que estás con tu vida?-4">4. Satisfecho</label>
+                            <input type="radio" id="¿Qué tan satisfecho consideras que estás con tu vida?-5" name="¿Qué tan satisfecho consideras que estás con tu vida?" value="5 - Muy satisfecho">
+                            <label for="¿Qué tan satisfecho consideras que estás con tu vida?-5">5. Muy satisfecho</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>6. En una escala de 1 a 5, ¿cómo calificarías la calidad de tu sueño en las últimas semanas?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo calificarías la calidad de tu sueño?-1" name="¿cómo calificarías la calidad de tu sueño?" value="1 - Muy mala" required>
+                            <label for="¿cómo calificarías la calidad de tu sueño?-1">1. Muy mala</label>
+                            <input type="radio" id="¿cómo calificarías la calidad de tu sueño?-2" name="¿cómo calificarías la calidad de tu sueño?" value="2 - Mala">
+                            <label for="¿cómo calificarías la calidad de tu sueño?-2">2. Mala</label>
+                            <input type="radio" id="¿cómo calificarías la calidad de tu sueño?-3" name="¿cómo calificarías la calidad de tu sueño?" value="3 - Regular">
+                            <label for="¿cómo calificarías la calidad de tu sueño?-3">3. Regular</label>
+                            <input type="radio" id="¿cómo calificarías la calidad de tu sueño?-4" name="¿cómo calificarías la calidad de tu sueño?" value="4 - Buena">
+                            <label for="¿cómo calificarías la calidad de tu sueño?-4">4. Buena</label>
+                            <input type="radio" id="¿cómo calificarías la calidad de tu sueño?-5" name="¿cómo calificarías la calidad de tu sueño?" value="5 - Muy buena">
+                            <label for="¿cómo calificarías la calidad de tu sueño?-5">5. Muy buena</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>7. En una escala de 1 a 5, ¿cómo calificarías tu salud física en general?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo calificarías tu salud física en general?-1" name="¿cómo calificarías tu salud física en general?" value="1 - Muy mala" required>
+                            <label for="¿cómo calificarías tu salud física en general?-1">1. Muy mala</label>
+                            <input type="radio" id="¿cómo calificarías tu salud física en general?-2" name="¿cómo calificarías tu salud física en general?" value="2 - Mala">
+                            <label for="¿cómo calificarías tu salud física en general?-2">2. Mala</label>
+                            <input type="radio" id="¿cómo calificarías tu salud física en general?-3" name="¿cómo calificarías tu salud física en general?" value="3 - Regular">
+                            <label for="¿cómo calificarías tu salud física en general?-3">3. Regular</label>
+                            <input type="radio" id="¿cómo calificarías tu salud física en general?-4" name="¿cómo calificarías tu salud física en general?" value="4 - Buena">
+                            <label for="¿cómo calificarías tu salud física en general?-4">4. Buena</label>
+                            <input type="radio" id="¿cómo calificarías tu salud física en general?-5" name="¿cómo calificarías tu salud física en general?" value="5 - Muy buena">
+                            <label for="¿cómo calificarías tu salud física en general?-5">5. Muy buena</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>8. En una escala de 1 a 5, ¿qué tan cómodo te sientes para hablar sobre tus sentimientos?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-1" name="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?" value="1 - Muy incómodo" required>
+                            <label for="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-1">1. Muy incómodo</label>
+                            <input type="radio" id="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-2" name="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?" value="2 - Incómodo">
+                            <label for="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-2">2. Incómodo</label>
+                            <input type="radio" id="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-3" name="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?" value="3 - Neutral">
+                            <label for="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-3">3. Neutral</label>
+                            <input type="radio" id="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-4" name="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?" value="4 - Cómodo">
+                            <label for="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-4">4. Cómodo</label>
+                            <input type="radio" id="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-5" name="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?" value="5 - Muy cómodo">
+                            <label for="¿qué tan cómodo te sientes para hablar sobre tus sentimientos?-5">5. Muy cómodo</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>9. En una escala de 1 a 5, ¿qué tan bien consideras que manejas tus emociones?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿qué tan bien consideras que manejas tus emociones?-1" name="¿qué tan bien consideras que manejas tus emociones?" value="1 - Muy mal" required>
+                            <label for="¿qué tan bien consideras que manejas tus emociones?-1">1. Muy mal</label>
+                            <input type="radio" id="¿qué tan bien consideras que manejas tus emociones?-2" name="¿qué tan bien consideras que manejas tus emociones?" value="2 - Mal">
+                            <label for="¿qué tan bien consideras que manejas tus emociones?-2">2. Mal</label>
+                            <input type="radio" id="¿qué tan bien consideras que manejas tus emociones?-3" name="¿qué tan bien consideras que manejas tus emociones?" value="3 - Regular">
+                            <label for="¿qué tan bien consideras que manejas tus emociones?-3">3. Regular</label>
+                            <input type="radio" id="¿qué tan bien consideras que manejas tus emociones?-4" name="¿qué tan bien consideras que manejas tus emociones?" value="4 - Bien">
+                            <label for="¿qué tan bien consideras que manejas tus emociones?-4">4. Bien</label>
+                            <input type="radio" id="¿qué tan bien consideras que manejas tus emociones?-5" name="¿qué tan bien consideras que manejas tus emociones?" value="5 - Muy bien">
+                            <label for="¿qué tan bien consideras que manejas tus emociones?-5">5. Muy bien</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>10. En una escala de 1 a 5, ¿cómo calificarías tu capacidad para afrontar desafíos?</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="¿cómo calificarías tu capacidad para afrontar desafíos?-1" name="¿cómo calificarías tu capacidad para afrontar desafíos?" value="1 - Muy mala" required>
+                            <label for="¿cómo calificarías tu capacidad para afrontar desafíos?-1">1. Muy mala</label>
+                            <input type="radio" id="¿cómo calificarías tu capacidad para afrontar desafíos?-2" name="¿cómo calificarías tu capacidad para afrontar desafíos?" value="2 - Mala">
+                            <label for="¿cómo calificarías tu capacidad para afrontar desafíos?-2">2. Mala</label>
+                            <input type="radio" id="¿cómo calificarías tu capacidad para afrontar desafíos?-3" name="¿cómo calificarías tu capacidad para afrontar desafíos?" value="3 - Regular">
+                            <label for="¿cómo calificarías tu capacidad para afrontar desafíos?-3">3. Regular</label>
+                            <input type="radio" id="¿cómo calificarías tu capacidad para afrontar desafíos?-4" name="¿cómo calificarías tu capacidad para afrontar desafíos?" value="4 - Buena">
+                            <label for="¿cómo calificarías tu capacidad para afrontar desafíos?-4">4. Buena</label>
+                            <input type="radio" id="¿cómo calificarías tu capacidad para afrontar desafíos?-5" name="¿cómo calificarías tu capacidad para afrontar desafíos?" value="5 - Muy buena">
+                            <label for="¿cómo calificarías tu capacidad para afrontar desafíos?-5">5. Muy buena</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>A menudo pienso en lo que debería haber hecho de manera diferente en mi vida.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-1" name="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida" value="1" required>
+                            <label for="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-1">1. Nunca</label>
+                            <input type="radio" id="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-2" name="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida" value="2">
+                            <label for="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-2">2. Pocas veces</label>
+                            <input type="radio" id="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-3" name="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida" value="3">
+                            <label for="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-3">3. Algunas veces</label>
+                            <input type="radio" id="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-4" name="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida" value="4">
+                            <label for="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-4">4. Casi siempre</label>
+                            <input type="radio" id="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-5" name="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida" value="5">
+                            <label for="A menudo pienso en lo que debería haber hecho de manera diferente en mi vida-5">5. Siempre</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>Estoy satisfecho con mi vida.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="Estoy satisfecho con mi vida-1" name="Estoy satisfecho con mi vida" value="1" required>
+                            <label for="Estoy satisfecho con mi vida-1">1. Totalmente en desacuerdo</label>
+                            <input type="radio" id="Estoy satisfecho con mi vida-2" name="Estoy satisfecho con mi vida" value="2">
+                            <label for="Estoy satisfecho con mi vida-2">2. En desacuerdo</label>
+                            <input type="radio" id="Estoy satisfecho con mi vida-3" name="Estoy satisfecho con mi vida" value="3">
+                            <label for="Estoy satisfecho con mi vida-3">3. Neutral</label>
+                            <input type="radio" id="Estoy satisfecho con mi vida-4" name="Estoy satisfecho con mi vida" value="4">
+                            <label for="Estoy satisfecho con mi vida-4">4. De acuerdo</label>
+                            <input type="radio" id="Estoy satisfecho con mi vida-5" name="Estoy satisfecho con mi vida" value="5">
+                            <label for="Estoy satisfecho con mi vida-5">5. Totalmente de acuerdo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>Me siento a gusto con mi vida en general.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="Me siento a gusto con mi vida en general-1" name="Me siento a gusto con mi vida en general" value="1" required>
+                            <label for="Me siento a gusto con mi vida en general-1">1. Totalmente en desacuerdo</label>
+                            <input type="radio" id="Me siento a gusto con mi vida en general-2" name="Me siento a gusto con mi vida en general" value="2">
+                            <label for="Me siento a gusto con mi vida en general-2">2. En desacuerdo</label>
+                            <input type="radio" id="Me siento a gusto con mi vida en general-3" name="Me siento a gusto con mi vida en general" value="3">
+                            <label for="Me siento a gusto con mi vida en general-3">3. Neutral</label>
+                            <input type="radio" id="Me siento a gusto con mi vida en general-4" name="Me siento a gusto con mi vida en general" value="4">
+                            <label for="Me siento a gusto con mi vida en general-4">4. De acuerdo</label>
+                            <input type="radio" id="Me siento a gusto con mi vida en general-5" name="Me siento a gusto con mi vida en general" value="5">
+                            <label for="Me siento a gusto con mi vida en general-5">5. Totalmente de acuerdo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-1" name="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido" value="1" required>
+                            <label for="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-1">1. Totalmente en desacuerdo</label>
+                            <input type="radio" id="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-2" name="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido" value="2">
+                            <label for="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-2">2. En desacuerdo</label>
+                            <input type="radio" id="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-3" name="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido" value="3">
+                            <label for="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-3">3. Neutral</label>
+                            <input type="radio" id="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-4" name="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido" value="4">
+                            <label for="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-4">4. De acuerdo</label>
+                            <input type="radio" id="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-5" name="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido" value="5">
+                            <label for="Siento que he llegado a ser una mejor persona a través de las experiencias que he vivido-5">5. Totalmente de acuerdo</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label>Las cosas que hago son valiosas y significativas.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="Las cosas que hago son valiosas y significativas-1" name="Las cosas que hago son valiosas y significativas" value="1" required>
+                            <label for="Las cosas que hago son valiosas y significativas-1">1. Totalmente en desacuerdo</label>
+                            <input type="radio" id="Las cosas que hago son valiosas y significativas-2" name="Las cosas que hago son valiosas y significativas" value="2">
+                            <label for="Las cosas que hago son valiosas y significativas-2">2. En desacuerdo</label>
+                            <input type="radio" id="Las cosas que hago son valiosas y significativas-3" name="Las cosas que hago son valiosas y significativas" value="3">
+                            <label for="Las cosas que hago son valiosas y significativas-3">3. Neutral</label>
+                            <input type="radio" id="Las cosas que hago son valiosas y significativas-4" name="Las cosas que hago son valiosas y significativas" value="4">
+                            <label for="Las cosas que hago son valiosas y significativas-4">4. De acuerdo</label>
+                            <input type="radio" id="Las cosas que hago son valiosas y significativas-5" name="Las cosas que hago son valiosas y significativas" value="5">
+                            <label for="Las cosas que hago son valiosas y significativas-5">5. Totalmente de acuerdo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>Me siento feliz con mi nivel de logros personales.</label>
+                        <div class="divider"></div>
+                        <div class="options">
+                            <input type="radio" id="Me siento feliz con mi nivel de logros personales-1" name="Me siento feliz con mi nivel de logros personales" value="1" required>
+                            <label for="Me siento feliz con mi nivel de logros personales-1">1. Totalmente en desacuerdo</label>
+                            <input type="radio" id="Me siento feliz con mi nivel de logros personales-2" name="Me siento feliz con mi nivel de logros personales" value="2">
+                            <label for="Me siento feliz con mi nivel de logros personales-2">2. En desacuerdo</label>
+                            <input type="radio" id="Me siento feliz con mi nivel de logros personales-3" name="Me siento feliz con mi nivel de logros personales" value="3">
+                            <label for="Me siento feliz con mi nivel de logros personales-3">3. Neutral</label>
+                            <input type="radio" id="Me siento feliz con mi nivel de logros personales-4" name="Me siento feliz con mi nivel de logros personales" value="4">
+                            <label for="Me siento feliz con mi nivel de logros personales-4">4. De acuerdo</label>
+                            <input type="radio" id="Me siento feliz con mi nivel de logros personales-5" name="Me siento feliz con mi nivel de logros personales" value="5">
+                            <label for="Me siento feliz con mi nivel de logros personales-5">5. Totalmente de acuerdo</label>
+                        </div>
+                    </div>                                                    
+                </fieldset>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <!-- Situación Problema -->
+        <div id="situacion-problema">
+            <h2>Situación Problema</h2>
+            <p>Monitoreo del Bienestar personal en la Población a través de un análisis descriptivo.</p>
+            <p>Existe una necesidad de monitorear el bienestar personal de la población de manera efectiva, pero los datos necesarios para hacerlo están dispersos y no se analizan de forma integrada. Sin un análisis descriptivo que combine y procese estos datos, es difícil identificar patrones, emitir alertas o hacer recomendaciones que mejoren la situación. Esto limita la capacidad para tomar decisiones informadas que puedan mejorar la calidad de vida de las personas. Por lo tanto, es necesario desarrollar un enfoque sistemático para recopilar, procesar y analizar estos datos de manera que se puedan identificar patrones y tendencias que informen la toma de decisiones y promuevan el bienestar general de la población.</p>
+            <p> Objetivo General:
+
+            <p>1.	Desarrollar un análisis descriptivo integral del bienestar personal en la población, mediante la recopilación y procesamiento de datos multifuentes, para identificar patrones y tendencias, emitir alertas y recomendaciones personalizadas, y facilitar la toma de decisiones informadas que promuevan la mejora continua del bienestar general.
+            <p>Objetivos específicos:
+
+<p>1.	Medir y analizar los niveles de bienestar personal en al menos el 70% de la población objetivo durante un periodo de seis meses, utilizando cuestionarios nivelados y técnicas de análisis descriptivo, con el fin de obtener datos confiables y comparables.
+
+<p>2.	descubrir cuáles son las principales influencias que afectan el bienestar personal de las personas dentro de la población determinada para hacer recomendaciones que puedan ayudar a mejorar su bienestar. Para esto, se planea estudiar diferentes características de la población, como la edad, el género, el nivel 
+</p>
+       </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario-link').addEventListener('click', function() {
+            document.getElementById('formulario').style.display = 'block';
+            document.getElementById('situacion-problema').style.display = 'none';
+            document.getElementById('content').querySelector('h2').innerText = "Cuestionario de Bienestar Emocional";
+        });
+
+        document.getElementById('situacion-link').addEventListener('click', function() {
+            document.getElementById('situacion-problema').style.display = 'block';
+            document.getElementById('formulario').style.display = 'none';
+            document.getElementById('content').querySelector('h2').innerText = "Situación Problema";
+        });
+    </script>
+</body>
+</html>
